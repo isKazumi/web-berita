@@ -1,3 +1,4 @@
+'use client'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import ToggleMenu from './nav-toggle-menu'
 import { useState } from 'react'
@@ -6,12 +7,10 @@ const Toggle = () => {
   const [isActive, setIsActive] = useState(false)
 
   const hendlerClick = () => {
-    if (!isActive) {
-      setIsActive(true)
-    } else {
-      setIsActive(false)
-    }
+    setIsActive(!isActive)
   }
+
+  console.log(isActive)
 
   return (
     <div>
@@ -22,7 +21,7 @@ const Toggle = () => {
       >
         <GiHamburgerMenu className="w-5 h-5 " />
       </button>
-      {isActive && <ToggleMenu />}
+      {isActive && <ToggleMenu hendlerClose={hendlerClick} />}
     </div>
   )
 }
