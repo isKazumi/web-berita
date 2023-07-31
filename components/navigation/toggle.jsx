@@ -10,8 +10,6 @@ const Toggle = () => {
     setIsActive(!isActive)
   }
 
-  console.log(isActive)
-
   return (
     <div>
       <button
