@@ -8,8 +8,7 @@ const DropdownMenu = () => {
     health: 'Health',
     science: 'Science',
     sports: 'Sports',
-    technology: 'Technology',
-    general: 'General'
+    technology: 'Technology'
   }
 
   return (
