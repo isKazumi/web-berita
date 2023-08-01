@@ -7,8 +7,6 @@ const formaterDate = date => {
     }).format(dt)
   })
 
-  console.log(data)
-
   return data
 }
 
