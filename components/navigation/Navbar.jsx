@@ -10,10 +10,10 @@ const Navbar = () => {
       setWindowWidth(window.innerWidth)
     }
 
-    window.addEventListener('resize', hendlerResize)
+    window.addEventListener('scroll', hendlerResize)
 
     return () => {
-      window.addEventListener('resize', hendlerResize)
+      window.addEventListener('scroll', hendlerResize)
     }
   }, [])
 
