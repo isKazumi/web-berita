@@ -6,7 +6,6 @@ const DropdownMenu = ({ active }) => {
     business: 'Busines',
     entertainment: 'Entertainment',
     health: 'Health',
-    science: 'Science',
     sports: 'Sports',
     technology: 'Technology'
   }

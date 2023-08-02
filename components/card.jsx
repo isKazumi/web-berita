@@ -33,7 +33,7 @@ const PostCard = ({ post }) => {
           </div>
           <div className="bg-gray p-2 text-sm rounded-lg w-full">
             <div>{el.author ?? 'Unknow'}</div>
-            <div>{date[idx]}</div>
+            <div>{date[idx] ?? 'Unknow'}</div>
           </div>
         </div>
       ))}

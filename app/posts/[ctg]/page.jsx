@@ -1,17 +1,30 @@
 import Link from 'next/link'
 import PostCard from '@/components/card'
 
+export const generateMetadata = async ({ params }) => {
+  return {
+    title: `MEGA.news - ${params.ctg}`
+  }
+}
+
 const PostCategory = async ({ params: { ctg } }) => {
   const getCategory = async () => {
-    const category = await fetch(`https://newsapi.org/v2/everything?q=${ctg}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Api-Key': process.env.API_KEY
-      },
-      next: {revalidate : 40}
-    })
-    return category.json()
+    try {
+      const category = await fetch(
+        `https://newsapi.org/v2/everything?q=${ctg}&page=2&pageSize=42`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Api-Key': process.env.API_KEY
+          },
+          next: { revalidate: 40 }
+        }
+      )
+      return category.json()
+    } catch (err) {
+      throw new Error('message : ', err)
+    }
   }
 
   const { articles } = await getCategory()
