@@ -29,7 +29,9 @@ const Navbar = () => {
 
   return (
     <header
-      className={`w-full bg-white  ${isFixedNavbar ? 'top-0 fixed' : ''}`}
+      className={`w-full bg-white  ${
+        isFixedNavbar ? 'top-0 fixed shadow-lg' : ''
+      }`}
     >
       {windowWidth <= 767 && <MobileNav />}
       {windowWidth > 767 && windowWidth <= 1024 && (
