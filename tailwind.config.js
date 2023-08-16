@@ -12,6 +12,9 @@ module.exports = {
         secondary: '#FC4308',
         gray: '#F5F5F5',
         stroke: '#E6E6E6'
+      },
+      transitionProperty: {
+        height: 'height'
       }
     }
   },

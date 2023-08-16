@@ -6,13 +6,17 @@ import { FaSearch } from 'react-icons/fa'
 import { IoIosArrowDown } from 'react-icons/io'
 import { useState } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 const DesktopNav = () => {
-  const [isActive, setIsActive] = useState(true)
+  const [isActive, setIsActive] = useState(false)
 
   const hendlerClick = () => {
     setIsActive(!isActive)
   }
+
+  const searchParams = useSearchParams()
+  const q = searchParams.get('q')
 
   return (
     <div className="w-full py-4">
@@ -28,7 +32,7 @@ const DesktopNav = () => {
                 <IoIosArrowDown />
               </span>
             </button>
-            {isActive && <DropdownMenu active={isActive} />}
+            <DropdownMenu active={isActive} path={q} />
           </div>
         </div>
         <div className="w-96 relative top-0 left-0 overflow-hidden">

@@ -1,13 +1,15 @@
 'use client'
-import { useState, useEffect } from 'react'
 import MobileNav from './mobilenav/mobile-nav'
 import DesktopNav from './desktopnav/desktop-nav'
+import { useState, useEffect } from 'react'
 
 const Navbar = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
-  const [isFixedNavbar, setIsFiexedNavbar] = useState(false)
+  const [windowWidth, setWindowWidth] = useState(null)
+  const [isFixedNavbar, setIsFiexedNavbar] = useState(null)
 
   useEffect(() => {
+    setWindowWidth(window.innerWidth)
+
     const hendlerResize = () => {
       setWindowWidth(window.innerWidth)
     }
