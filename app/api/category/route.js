@@ -18,9 +18,9 @@ export const GET = async req => {
         next: { revalidate: 120 }
       }
     )
-    const data = await req.json()
+    const { articles } = await req.json()
 
-    return NextResponse.json({ message: 'OK', data }, { status: 200 })
+    return NextResponse.json({ message: 'OK', articles }, { status: 200 })
   } catch (err) {
     return NextResponse.json({ message: 'ERROR', err }, { status: 500 })
   }

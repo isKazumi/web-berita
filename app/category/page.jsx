@@ -36,11 +36,9 @@ const CategoryPage = () => {
       })
   }, [pageOfSite, q, pageSize])
 
-  if (datas === null) return <LoadingCard />
+  if (!datas) return <LoadingCard />
 
-  const {
-    data: { articles }
-  } = datas
+  const { articles } = datas
 
   return (
     <>
