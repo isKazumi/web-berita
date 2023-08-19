@@ -5,7 +5,7 @@ export const GET = async req => {
 
   const q = searchParams.get('q')
   const page = searchParams.get('page')
-  const limit = searchParams.get('limit')
+  const limit = searchParams.get('pageSize')
 
   try {
     const req = await fetch(

@@ -1,57 +1,70 @@
 'use client'
 import PostCard from '@/components/card'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
+import { LoadingCard } from '@/components/Loading'
 
 const CategoryPage = () => {
+  const router = useRouter()
   const [datas, setDatas] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
   const [pageOfSite, setPageOfSite] = useState(1)
 
-  const searchParams = useSearchParams()
-  const q = searchParams.get('q')
-  const page = searchParams.get('page')
-  const pageSize = searchParams.get('pageSize')
+  const seractParams = useSearchParams()
+  const q = seractParams.get('q')
+  const pageSize = seractParams.get('pageSize')
 
-  const quary = {
-    q: `${q}`,
-    page: `${pageOfSite}`,
-    pageSize: `${pageSize}`
+  const hendlerNext = () => {
+    const nextPage = pageOfSite + 1
+    router.push(`category?q=${q}&page=${nextPage}&pageSize=${pageSize}`)
+    setPageOfSite(nextPage)
+  }
+
+  const hendlerPrev = () => {
+    if (pageOfSite > 1) {
+      const prevPage = pageOfSite - 1
+      router.push(`category?q=${q}&page=${prevPage}&pageSize=${pageSize}`)
+      setPageOfSite(prevPage)
+    }
   }
 
   useEffect(() => {
-    axios
-      .get('api/category', {
-        params: quary
+    fetch(`api/category?q=${q}&page=${pageOfSite}&pageSize=${pageSize}`)
+      .then(req => req.json())
+      .then(data => setDatas(data))
+      .catch(err => {
+        throw new Error(err)
       })
-      .then(response => setDatas(response.data))
-      .catch(err => console.log(err))
+  }, [pageOfSite, q, pageSize])
 
-    if (!isLoading) {
-      setIsLoading(false)
-    }
-  }, [page, isLoading, pageOfSite])
-
-  if (datas === null) return
+  if (datas === null) return <LoadingCard />
 
   const {
     data: { articles }
   } = datas
 
   return (
-    <div>
-      <div>Category : {q}</div>
-      <div>{isLoading && <PostCard post={articles} />}</div>
-      <div>
-        <button type="button" onClick={() => setPageOfSite(pageOfSite + 1)}>
-          next
-        </button>
-        <button type="button" onClick={() => setPageOfSite(pageOfSite - 1)}>
-          Back
-        </button>
+    <>
+      <div className="flex justify-between items-center">
+        <div className="px-4 text-base">Category : {q}</div>
+        <div>
+          <button
+            className="btn p-2 bg-red-200"
+            type="button"
+            onClick={hendlerNext}
+          >
+            next
+          </button>
+          <button
+            className="btn p-2 bg-red-500"
+            type="button"
+            onClick={hendlerPrev}
+          >
+            Back
+          </button>
+        </div>
       </div>
-    </div>
+      <PostCard post={articles} />
+    </>
   )
 }
 
