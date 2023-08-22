@@ -5,9 +5,7 @@ import { useState, createContext } from 'react'
 import { GiHamburgerMenu } from 'react-icons/gi'
 import Button from '@/components/button'
 import Canvas from './canvas'
-
 export const ActionContext = createContext()
-
 const MobileNav = () => {
   const [isActive, setIsActive] = useState(false)
 

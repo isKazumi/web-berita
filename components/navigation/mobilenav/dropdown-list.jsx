@@ -40,7 +40,7 @@ const DropdownList = () => {
         } transition-all ease-in-out duration-300 overflow-hidden rounded-br-xl rounded-bl-xl`}
       >
         {Object.entries(navList).map(([value, key]) => (
-          <li key={key} onClick={isActive}>
+          <div key={key} onClick={isActive}>
             <Link
               href={`category?q=${value}&page=1&pageSize=20`}
               className={`${
@@ -49,7 +49,7 @@ const DropdownList = () => {
             >
               {value}
             </Link>
-          </li>
+          </div>
         ))}
       </div>
     </>
