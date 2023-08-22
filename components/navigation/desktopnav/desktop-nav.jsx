@@ -1,6 +1,5 @@
 'use client'
 import SearchItems from '../mobilenav/SearchItems'
-import DropdownMenu from '../dropdown-menu'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { FaSearch } from 'react-icons/fa'
 import { IoIosArrowDown } from 'react-icons/io'
@@ -28,7 +27,7 @@ const DesktopNav = () => {
                 <IoIosArrowDown />
               </span>
             </button>
-            <DropdownMenu active={isActive} />
+            Ulang
           </div>
         </div>
         <div className="w-96 relative top-0 left-0 overflow-hidden">
